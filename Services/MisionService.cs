@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using QuestLog.DTOs;
 using QuestLog.Models;
 using QuestLog.Repositories;
 
@@ -7,7 +6,7 @@ namespace QuestLog.Services;
 
 public class MisionService(IMisionRepository repository) : IMisionService
 {
-    private static Mision ValidarYCrear(MisionRequest request)
+    private static Mision ValidarYCrear(Mision request)
     {
         if (string.IsNullOrWhiteSpace(request.Nombre))
             throw new ValidationException("El nombre de la misión es obligatorio.");
@@ -30,14 +29,14 @@ public class MisionService(IMisionRepository repository) : IMisionService
     public Task<Mision?> ObtenerPorIdAsync(int id, CancellationToken ct = default) =>
         repository.ObtenerPorIdAsync(id, ct);
 
-    public Task<Mision> CrearAsync(MisionRequest request, CancellationToken ct = default)
+    public Task<Mision> CrearAsync(Mision request, CancellationToken ct = default)
     {
         var mision = ValidarYCrear(request);
         mision.Completada = false;
         return repository.CrearAsync(mision, ct);
     }
 
-    public async Task ActualizarAsync(int id, MisionRequest request, CancellationToken ct = default)
+    public async Task ActualizarAsync(int id, Mision request, CancellationToken ct = default)
     {
         if (await repository.ObtenerPorIdAsync(id, ct) is null)
             throw new KeyNotFoundException("La misión no existe.");

@@ -1,24 +1,28 @@
   Determining projects to restore...
-  All projects are up-to-date for restore.
-  QuestLog -> /workspace/scratch/d9e763fd30f1/QuestLog/bin/Debug/net10.0/QuestLog.dll
+  Restored /workspace/scratch/d9e763fd30f1/QuestLog_sin_DTOs/QuestLog.csproj (in 105 ms).
+  QuestLog -> /workspace/scratch/d9e763fd30f1/QuestLog_sin_DTOs/bin/Debug/net10.0/QuestLog.dll
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:02.23
+Time Elapsed 00:00:05.71
 OK - GET inicial devuelve lista vacía
 OK - POST devuelve 201 y Location: Recolectar hierbas
 OK - Nueva misión inicia sin completar: Recolectar hierbas
+OK - POST genera el Id e ignora el recibido
 OK - POST devuelve 201 y Location: Explorar la cueva
 OK - Nueva misión inicia sin completar: Explorar la cueva
+OK - POST genera el Id e ignora el recibido
 OK - POST devuelve 201 y Location: Derrotar al dragón
 OK - Nueva misión inicia sin completar: Derrotar al dragón
+OK - POST genera el Id e ignora el recibido
 OK - Identificadores únicos
 OK - Tres misiones idénticas después de reiniciar el proceso
 OK - GET por identificador
 OK - PUT devuelve 204
 OK - PUT permite completar una misión
+OK - PUT conserva el Id de la ruta
 OK - POST rechaza {'nombre': ''}
 OK - PUT rechaza {'nombre': ''}
 OK - POST rechaza {'nombre': '   '}
@@ -53,4 +57,4 @@ OK - DELETE devuelve 204
 OK - DELETE devuelve 204
 OK - Segunda eliminación devuelve 404
 OK - Cambios y eliminaciones permanecen tras segundo reinicio
-RESULTADO: 46 verificaciones correctas.
+RESULTADO: 50 verificaciones correctas.

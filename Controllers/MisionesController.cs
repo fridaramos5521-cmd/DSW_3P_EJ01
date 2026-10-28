@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using QuestLog.DTOs;
 using QuestLog.Models;
 using QuestLog.Services;
 
@@ -25,14 +24,14 @@ public class MisionesController(IMisionService service) : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Mision>> Crear([FromBody] MisionRequest request, CancellationToken ct)
+    public async Task<ActionResult<Mision>> Crear([FromBody] Mision request, CancellationToken ct)
     {
         var mision = await service.CrearAsync(request, ct);
         return CreatedAtAction(nameof(ObtenerPorId), new { id = mision.Id }, mision);
     }
 
     [HttpPut("{id:int}")]
-    public async Task<IActionResult> Actualizar(int id, [FromBody] MisionRequest request, CancellationToken ct)
+    public async Task<IActionResult> Actualizar(int id, [FromBody] Mision request, CancellationToken ct)
     {
         await service.ActualizarAsync(id, request, ct);
         return NoContent();

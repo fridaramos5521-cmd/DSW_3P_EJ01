@@ -76,10 +76,11 @@ with tempfile.TemporaryDirectory(prefix='questlog-test-') as directory:
         missions = []
         for name, level, xp in examples:
             status, mission, headers = request('POST', body={
-                'nombre': name, 'dificultad': level, 'recompensaXP': xp, 'completada': True})
+                'id': 88888, 'nombre': name, 'dificultad': level, 'recompensaXP': xp, 'completada': True})
             check(status == 201 and headers.get('Location', '').endswith('/' + str(mission['id'])),
                   'POST devuelve 201 y Location: ' + name)
             check(mission['completada'] is False, 'Nueva misión inicia sin completar: ' + name)
+            check(mission['id'] != 88888, 'POST genera el Id e ignora el recibido')
             missions.append(mission)
         check(len({m['id'] for m in missions}) == 3, 'Identificadores únicos')
         status, saved, _ = request('GET')
@@ -91,9 +92,10 @@ with tempfile.TemporaryDirectory(prefix='questlog-test-') as directory:
             (root / 'Data/misiones.json').write_text(data_path.read_text(), encoding='utf-8')
         first_id = missions[0]['id']
         check(request('GET', f'/{first_id}')[1] == missions[0], 'GET por identificador')
-        valid = {'nombre': 'Misión actualizada', 'dificultad': 'Media', 'recompensaXP': 0, 'completada': True}
+        valid = {'id': 88888, 'nombre': 'Misión actualizada', 'dificultad': 'Media', 'recompensaXP': 0, 'completada': True}
         check(request('PUT', f'/{first_id}', valid)[0] == 204, 'PUT devuelve 204')
         check(request('GET', f'/{first_id}')[1]['completada'] is True, 'PUT permite completar una misión')
+        check(request('GET', f'/{first_id}')[1]['id'] == first_id, 'PUT conserva el Id de la ruta')
         for patch in [{'nombre': ''}, {'nombre': '   '}, {'nombre': None},
                       {'dificultad': 'Imposible'}, {'dificultad': None}, {'recompensaXP': -1}]:
             body = valid | patch

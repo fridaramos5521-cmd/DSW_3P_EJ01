@@ -1,6 +1,6 @@
-# DSW_3P_PR01 – QuestLog (Etapa 1)
+# DSW_3P_PR01 – QuestLog (Etapa 1, sin DTOs)
 
-API REST de misiones con ASP.NET Core 10, controladores MVC, Repository y Service. Esta entrega implementa exclusivamente persistencia JSON.
+API REST de misiones con ASP.NET Core 10, controladores MVC, Repository y Service. Esta entrega implementa exclusivamente persistencia JSON. Se utiliza directamente el modelo `Mision` en las peticiones POST y PUT, sin DTOs.
 
 ## Ejecutar
 
@@ -18,7 +18,6 @@ La API escucha en `http://localhost:5050`. Puedes abrir `http://localhost:5050/a
 ## Organización y responsabilidades
 
 - `Models/Mision.cs`: entidad con las cinco propiedades solicitadas.
-- `DTOs/MisionRequest.cs`: datos de entrada; el servidor asigna el Id.
 - `Controllers/MisionesController.cs`: recibe HTTP y devuelve los resultados.
 - `Services/IMisionService.cs` y `MisionService.cs`: reglas de negocio.
 - `Repositories/IMisionRepository.cs` y `MisionJsonRepository.cs`: contrato y almacenamiento.
@@ -34,7 +33,7 @@ En una API MVC, el controlador devuelve representaciones JSON; no se necesitan v
 
 El servicio rechaza nombres nulos, vacíos o formados por espacios; guarda los nombres recortados. La dificultad debe coincidir exactamente con `Fácil`, `Media` o `Difícil` (incluye acentos y mayúsculas). RecompensaXP admite cero y valores positivos.
 
-En POST, Completada se establece siempre en false aunque el cliente envíe true. PUT reemplaza los campos editables y permite marcar la misión como completada. El Id proviene de la ruta en PUT y lo genera el repositorio en POST. Una misión inexistente nunca se crea mediante PUT.
+En POST, Completada se establece siempre en false aunque el cliente envíe true. PUT reemplaza los campos editables y permite marcar la misión como completada. El Id proviene de la ruta en PUT y lo genera el repositorio en POST; cualquier Id enviado en el cuerpo se ignora. Una misión inexistente nunca se crea mediante PUT.
 
 ## Rutas y códigos HTTP
 
