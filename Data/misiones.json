@@ -1,0 +1,23 @@
+[
+  {
+    "Id": 1,
+    "Nombre": "Recolectar hierbas",
+    "Dificultad": "F\u00E1cil",
+    "RecompensaXP": 100,
+    "Completada": false
+  },
+  {
+    "Id": 2,
+    "Nombre": "Explorar la cueva",
+    "Dificultad": "Media",
+    "RecompensaXP": 350,
+    "Completada": false
+  },
+  {
+    "Id": 3,
+    "Nombre": "Derrotar al drag\u00F3n",
+    "Dificultad": "Dif\u00EDcil",
+    "RecompensaXP": 1000,
+    "Completada": false
+  }
+]

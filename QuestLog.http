@@ -1,0 +1,49 @@
+@baseUrl = http://localhost:5050
+
+### Consultar todas
+GET {{baseUrl}}/api/misiones
+
+### Consultar por Id (cambia 1 por el Id recibido)
+GET {{baseUrl}}/api/misiones/1
+
+### Registrar misión fácil; la respuesta tendrá completada=false
+POST {{baseUrl}}/api/misiones
+Content-Type: application/json
+
+{"nombre":"Recolectar hierbas","dificultad":"Fácil","recompensaXP":100,"completada":true}
+
+### Registrar misión media
+POST {{baseUrl}}/api/misiones
+Content-Type: application/json
+
+{"nombre":"Explorar la cueva","dificultad":"Media","recompensaXP":350}
+
+### Registrar misión difícil
+POST {{baseUrl}}/api/misiones
+Content-Type: application/json
+
+{"nombre":"Derrotar al dragón","dificultad":"Difícil","recompensaXP":1000}
+
+### Actualizar (cambia 1 por el Id que deseas actualizar)
+PUT {{baseUrl}}/api/misiones/1
+Content-Type: application/json
+
+{"nombre":"Recolectar hierbas medicinales","dificultad":"Fácil","recompensaXP":150,"completada":true}
+
+### Error esperado: 400
+POST {{baseUrl}}/api/misiones
+Content-Type: application/json
+
+{"nombre":" ","dificultad":"Imposible","recompensaXP":-10}
+
+### Error esperado: 404
+PUT {{baseUrl}}/api/misiones/999999
+Content-Type: application/json
+
+{"nombre":"Misión inexistente","dificultad":"Media","recompensaXP":100,"completada":false}
+
+### Eliminar (cambia 1 por el Id que deseas eliminar)
+DELETE {{baseUrl}}/api/misiones/1
+
+### Error esperado: 404
+DELETE {{baseUrl}}/api/misiones/999999
