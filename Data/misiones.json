@@ -1,23 +1,16 @@
 [
   {
     "Id": 1,
-    "Nombre": "Recolectar hierbas",
+    "Nombre": "Explorar el bosque",
     "Dificultad": "F\u00E1cil",
-    "RecompensaXP": 100,
-    "Completada": false
+    "RecompensaXP": 150,
+    "Completada": true
   },
   {
     "Id": 2,
-    "Nombre": "Explorar la cueva",
+    "Nombre": "Rescatar al aldeano",
     "Dificultad": "Media",
-    "RecompensaXP": 350,
-    "Completada": false
-  },
-  {
-    "Id": 3,
-    "Nombre": "Derrotar al drag\u00F3n",
-    "Dificultad": "Dif\u00EDcil",
-    "RecompensaXP": 1000,
+    "RecompensaXP": 300,
     "Completada": false
   }
 ]
